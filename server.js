@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// POST /send-email
+
 app.post("/send-email", async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -19,7 +19,7 @@ app.post("/send-email", async (req, res) => {
 
   try {
     const transporter = nodemailer.createTransport({
-      service: "gmail", // or "hotmail", "yahoo", etc.
+      service: "gmail", 
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -28,7 +28,7 @@ app.post("/send-email", async (req, res) => {
 
     await transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER, // your email
+      to: process.env.EMAIL_USER, 
       subject: `New message from ${name}`,
       text: `From: ${name} (${email})\n\n${message}`,
     });
